@@ -62,4 +62,5 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member']], fu
     Route::get('/transaction/{id}/cancel', 'Frontend\TransactionController@cancel')->name('transaction.cancel');
     Route::resource('transaction', 'Frontend\TransactionController');
     Route::resource('jamaah', 'Frontend\MemberController');
+    Route::resource('info', 'Frontend\InfoController');
 });

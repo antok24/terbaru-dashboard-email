@@ -18,6 +18,8 @@ class CreateAnnouncementsTable extends Migration
             $table->string('subject');
             $table->text('content');
             $table->string('file')->nullable();
+            $table->string('recipient_role');
+            $table->tinyInteger('status')->default('0');
             $table->unsignedInteger('sender_id');
             $table->timestamps();
         });

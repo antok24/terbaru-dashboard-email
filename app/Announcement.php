@@ -10,7 +10,9 @@ class Announcement extends Model
         'subject',
         'content',
         'file',
-        'sender_id'
+        'sender_id',
+        'recipient_role',
+        'status'
     ];
 
     public function user()

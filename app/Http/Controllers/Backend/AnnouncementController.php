@@ -30,7 +30,6 @@ class AnnouncementController extends Controller
                             ->leftJoin('users AS b', 'a.sender_id','=','b.id')
                             ->select('a.*','b.*')
                             ->get();
-           
 
             return Datatables::of($announcement)
                 ->addIndexColumn()
@@ -76,9 +75,12 @@ class AnnouncementController extends Controller
 
         
         DB::transaction(function () use($request) {
+            $emails = User::where('role', $request->members)->pluck('email');           
+
             $alt_announcement = new Announcement;
             $alt_announcement->subject = $request->subject;
             $alt_announcement->content = $request->content;
+            $alt_announcement->recipient_role = (json_encode($emails));
             $alt_announcement->sender_id = Auth::user()->id;
             $alt_announcement->save();
 
@@ -87,8 +89,9 @@ class AnnouncementController extends Controller
             // $alt_recipient_announcement->recipient_id = $request->recipient_id;
             // $alt_recipient_announcement->save();
 
-            $emails = User::where('role', $request->members)->get();
             
+            $emails = User::where('role', $request->members)->get();
+
             $details = [
                 'title' => $request->input('subject'),
                 'body' => $request->input('content'),

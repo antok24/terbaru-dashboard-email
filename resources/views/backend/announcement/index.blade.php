@@ -28,6 +28,7 @@
                   <th>Subject</th>
                   <th>Content</th>
                   <th>Pengirim</th>
+                  <th>Penerima</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -61,6 +62,7 @@
             {data: 'subject', name: 'subject'},
             {data: 'content', name: 'content'},
             {data: 'name', name: 'name'},
+            {data: 'recipient_role', name: 'recipient_role'},
           ]
       });
   });

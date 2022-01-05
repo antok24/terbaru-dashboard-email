@@ -95,6 +95,9 @@
                 <li class="nav-item {{ setActive(['smart-order.index', 'smart-order.process']) }}">
                   <a href="{{ route('smart-order.index') }}" class="nav-link"><i class="fas fa-lightbulb"></i><span>SMART Order</span></a>
                 </li>
+                <li class="nav-item {{ setActive('info.index') }}">
+                  <a href="{{ route('info.index') }}" class="nav-link"><i class="fas fa-info-circle"></i><span>Pengumuman</span></a>
+                </li>
                 {{-- <li class="nav-item">
                   <a href="" class="nav-link"><i class="fa fa-arrow-circle-right"></i><span>Checkout</span></a>
                 </li> --}}
