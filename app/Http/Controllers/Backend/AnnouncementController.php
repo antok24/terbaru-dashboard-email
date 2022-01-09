@@ -71,9 +71,9 @@ class AnnouncementController extends Controller
             'members' => 'required',
             'subject' => 'required|max:225',
             'content' => 'required',
+            'file'    => 'required|mimes:jpeg,png,jpg,zip,pdf|max:2048',
         ]);
 
-        
         DB::transaction(function () use($request) {
             $emails = User::where('role', $request->members)->pluck('email');           
 
@@ -82,6 +82,20 @@ class AnnouncementController extends Controller
             $alt_announcement->content = $request->content;
             $alt_announcement->recipient_role = (json_encode($emails));
             $alt_announcement->sender_id = Auth::user()->id;
+            // save for file
+            if ($request->hasFile('file')) {
+                // megnambil image yang diupload berikut ekstensinya
+                $filename = null;
+                $uploaded_file = $request->file('file');
+                $extension = $uploaded_file->getClientOriginalExtension();
+                // membuat nama file random dengan extension
+                $filename = uniqid() . '.' . $extension;
+                $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'attachment';
+                // memindahkan file ke folder public/images
+                $uploaded_file->move($destinationPath, $filename);
+    
+                $alt_announcement->file = $filename;
+            }
             $alt_announcement->save();
 
             // $alt_recipient_announcement = new RecipientAnnouncement;
@@ -95,6 +109,7 @@ class AnnouncementController extends Controller
             $details = [
                 'title' => $request->input('subject'),
                 'body' => $request->input('content'),
+                'file' => $filename,
             ];
 
             $subject = $request->input('subject');

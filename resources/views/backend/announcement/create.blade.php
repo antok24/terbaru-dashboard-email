@@ -71,17 +71,12 @@
         <div class="col-lg-4">
           <div class="card card-primary">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold">Gambar Paket</h6>
+              <h6 class="m-0 font-weight-bold">Attach File</h6>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <div class="text-center">
-                  <img src="{{ asset('assets/stisla/img/example-image.jpg') }}" class="rounded-circle" id="image-prev" width="200" height="200" alt="image">
-                </div>
-              </div>
               <div class="form-group custom-file mb-3">
                 <input id="file" type="file" class="custom-file-input {{ $errors->has('file') ? ' has-error' : '' }}" name="file">
-                <label class="custom-file-label" for="customFile">Pilih Gambar</label>
+                <label class="custom-file-label" for="customFile">Pilih File</label>
               </div>
               @if ($errors->has('file'))
                 <div class="invalid-feedback">

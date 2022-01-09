@@ -92,7 +92,7 @@
               </li>
 
               <li class="{{ setActive(['announcement.index', 'announcement.show']) }}">
-                <a href="{{ route('announcement.index') }}"><i class="fas fa-fw fa-credit-card"></i><span>Pengumuman</span></a>
+                <a href="{{ route('announcement.index') }}"><i class="fas fa-fw fa-bullhorn"></i><span>Pengumuman</span></a>
               </li>
 
               <li class="menu-header">Master SPK</li>

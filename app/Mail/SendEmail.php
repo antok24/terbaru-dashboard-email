@@ -32,7 +32,10 @@ class SendEmail extends Mailable
      */
     public function build()
     {
+        $filename = $this->details['file'];
+        $path = "/uploads/images/attachment/".$filename;
         return $this->subject($this->subject)
-                    ->view('emails.isi-email');
+                    ->view('emails.isi-email')
+                    ->attach(public_path($path));
     }
 }
